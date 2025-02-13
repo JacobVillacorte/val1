@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            background: url('lovebulabog.jpeg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .btn {
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        #yes {
+            background: #ff4d6d;
+            color: white;
+        }
+        #no {
+            background: #555;
+            color: white;
+        }
+        .hidden {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: pink;
+        }
+        .option-buttons {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .option-buttons button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .option-buttons img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+        }
+        .final-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 2rem;
+            color: pink;
+        }
+        .tenor-gif-embed {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="question">Will you be my Valentine? 💖</h1>
+        <div class="buttons" id="buttons">
+            <button id="yes" class="btn" onclick="showOptions()">Yes</button>
+            <button id="no" class="btn" onclick="shrinkNo()">No</button>
+        </div>
+        <div id="option-buttons" class="option-buttons">
+            <button onclick="changeScreen('dinner')"><img src="dinner.jpg" alt="Dinner"> Romantic Dinner</button>
+            <button onclick="changeScreen('movie')"><img src="movie.jpg" alt="Movie"> Movie Night</button>
+            <button onclick="changeScreen('icecream')"><img src="icecream.jpg" alt="Ice Cream"> Ice Cream Date</button>
+            <button onclick="changeScreen('Bembang')"><img src="Bembang.jpg" alt="Bembang"> Bembang</button>
+        </div>
+        <div id="final-message" class="final-message">
+            <p>Yay! Can't wait for our special date! 💕</p>
+            <div class="tenor-gif-embed" data-postid="2046621885917590956" data-share-method="host" data-aspect-ratio="1.245" data-width="100%"><a href="https://tenor.com/view/mika-noah-raj-yay-cheer-gif-2046621885917590956">Mika Noah GIF</a> from <a href="https://tenor.com/search/mika-gifs">Mika GIFs</a></div> 
+            <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        </div>
+    </div>
+    <script>
+        function showOptions() {
+            document.getElementById('option-buttons').style.display = 'flex';
+            document.getElementById('buttons').style.display = 'none';
+            document.getElementById('question').style.display = 'none';
+        }
+        function shrinkNo() {
+            let noBtn = document.getElementById('no');
+            let yesBtn = document.getElementById('yes');
+            let noSize = parseFloat(window.getComputedStyle(noBtn).getPropertyValue('transform').match(/matrix\(.*?\)/g)?.[0]?.split(',')[0]) || 1;
+            let yesSize = parseFloat(window.getComputedStyle(yesBtn).getPropertyValue('transform').match(/matrix\(.*?\)/g)?.[0]?.split(',')[0]) || 1;
+            noBtn.style.transform = `scale(${Math.max(noSize - 0.2, 0.2)})`;
+            yesBtn.style.transform = `scale(${yesSize + 0.2})`;
+        }
+        function changeScreen(option) {
+            let backgroundImages = {
+                'dinner': 'dinner-bg.jpg',
+                'movie': 'movie-bg.jpg',
+                'icecream': 'icecream-bg.jpg',
+                'Bembang': 'Bembang-bg.jpg'
+            };
+            document.body.style.background = `url('${backgroundImages[option]}') no-repeat center center/cover`;
+            document.getElementById('option-buttons').style.display = 'none';
+            document.getElementById('final-message').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
